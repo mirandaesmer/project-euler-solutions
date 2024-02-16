@@ -2,7 +2,7 @@ from math import sqrt
 from typing import List
 
 
-class ProjectEulerA:
+class ProjectEuler1to10:
     def problem1(self) -> int:
         # If we list all the natural numbers below 10 that are multiples of 3 or
         # 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. # Find the
@@ -88,7 +88,7 @@ class ProjectEulerA:
 
 
 if __name__ == "__main__":
-    euler = ProjectEulerA()
+    euler = ProjectEuler1to10()
     
     print(euler.problem1())  # solved
     print(euler.problem2())  # solved
