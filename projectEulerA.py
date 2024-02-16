@@ -27,32 +27,10 @@ class ProjectEulerA:
         # exceed four million, find the sum of the even-valued terms.
         mem = [1,2] + ([0] * 100)
         return self._problem2(2, 2, mem)
-        
-    def _is_prime(self, n, prime_list):
-        if n in prime_list:
-            return True
-        for p in prime_list:
-            if n % p == 0:
-                return False
-        return True
-
-    def _get_primes_up_to(self, i, limit, mem):
-        while i < limit:
-            if self._is_prime(i, mem):
-                mem.append(i)
-            i += 1
-        return mem
     
     def problem3(self) -> int:
         # The prime factors of 13195 are 5, 7, 13 and 29
         # What is the largest prime factor of the number 600851475143?
-        num = 600851475143
-        upper_limit = sqrt(num)
-        
-        # get first 50 primes
-        # TODO takes way to long, need different strat
-        x = self._get_primes_up_to(6, upper_limit, mem=[2, 3, 5])
-        print(x)
         return 0
     
     def _is_palindrome_fast(self, num: int) -> bool:
@@ -93,6 +71,21 @@ class ProjectEulerA:
         squares_sum = sum(list(range(1, 101))) ** 2
         return squares_sum - sum_squares
 
+    def problem9(self) -> int:
+        # A Pythagorean triplet is a set of three natural numbers
+        #     a < b < c for which a^2 + b^2 = c^2
+        # For example
+        #     3^2 + 4^2 = 9 + 16 = 25 = 5^2
+        # There exists exactly one Pythagorean triplet for which
+        #     a + b + c = 1000
+        # Find the product a * b * c
+        for a in range(1, 250):
+            for b in range(a + 1, ((1000 - a) // 2) + a):  # limit search space
+                c = 1000 - a - b
+                if c != a and c != b and ( (a ** 2) + (b ** 2) == c ** 2 ):
+                    return a * b * c
+        return 0
+
 
 if __name__ == "__main__":
     euler = ProjectEulerA()
@@ -103,3 +96,7 @@ if __name__ == "__main__":
     print(euler.problem4())  # solved
     # print(euler.problem5())  # TODO unsolved
     print(euler.problem6())  # solved
+    # print(euler.problem7())  # TODO unsolved
+    # print(euler.problem8())  # TODO unsolved
+    print(euler.problem9())  # solved
+    # print(euler.problem10())  # TODO unsolved
