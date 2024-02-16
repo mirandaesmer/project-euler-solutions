@@ -28,21 +28,49 @@ class ProjectEulerA:
         mem = [1,2] + ([0] * 100)
         return self._problem2(2, 2, mem)
         
+    def _is_prime(self, n, prime_list):
+        if n in prime_list:
+            return True
+        for p in prime_list:
+            if n % p == 0:
+                return False
+        return True
+
+    def _get_primes_up_to(self, i, limit, mem):
+        while i < limit:
+            if self._is_prime(i, mem):
+                mem.append(i)
+            i += 1
+        return mem
+    
     def problem3(self) -> int:
         # The prime factors of 13195 are 5, 7, 13 and 29
         # What is the largest prime factor of the number 600851475143?
         num = 600851475143
         upper_limit = sqrt(num)
         
-        # TODO WIP
         # get first 50 primes
+        # TODO takes way to long, need different strat
+        x = self._get_primes_up_to(6, upper_limit, mem=[2, 3, 5])
+        print(x)
         return 0
+    
+    def _is_palindrome_fast(self, num: int) -> bool:
+        # find if 5 or 6 digit:
+        digits = 6 if num > 99999 else 5
+        digit_list = [(num // (10 ** (i - 1))) % 10 for i in range(digits, 0, -1)]
+        return digit_list == digit_list[::-1]
     
     def problem4(self) -> int:
         # A palindromic number reads the same both ways. The largest palindrome
         # made from the product of two 2-digit numbers is 9009 = 91 * 99. Find
         # the largest palindrome made from the product of two 3-digit numbers.
-        return 0
+        max_palindrome = 0
+        for i in range(999, 99, -1):
+            for j in range(999, 99, -1):
+                if self._is_palindrome_fast(i * j):
+                    max_palindrome = max(max_palindrome, i * j)
+        return max_palindrome  # Could be made more efficient
     
     def problem5(self) -> int:
         # 2520 is the smallest number that can be divided by each of the numbers
@@ -51,12 +79,27 @@ class ProjectEulerA:
         # the numbers from 1 to 20,
         return 0
         
+    def problem6(self) -> int:
+        # The sum of the squares of the first ten natural numbers is:
+        #     1^2 + 2^2 + ... + 10^2 = 385
+        # The square of the sum of the first ten natural numbers is,
+        #     (1 + 2 + ... + 10)^2 = 55^2 = 3025
+        # Hence the difference between the sum of the squares of the first ten
+        # natural numbers and the square of the sum is
+        #     3025 - 385 = 2640
+        # Find the difference between the sum of the squares of the first one
+        # hundred natural numbers and the square of the sum.
+        sum_squares = sum([i ** 2 for i in range(1, 101)])
+        squares_sum = sum(list(range(1, 101))) ** 2
+        return squares_sum - sum_squares
+
 
 if __name__ == "__main__":
     euler = ProjectEulerA()
     
     print(euler.problem1())  # solved
     print(euler.problem2())  # solved
-    # print(problem3())  # unsolved
-    # print(problem4())  # unsolved
-    # print(problem5())  # unsolved
+    # print(euler.problem3())  # TODO unsolved
+    print(euler.problem4())  # solved
+    # print(euler.problem5())  # TODO unsolved
+    print(euler.problem6())  # solved
