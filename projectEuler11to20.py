@@ -1,5 +1,5 @@
 from functools import reduce
-from typing import List
+from typing import List, Dict
 
 
 class ProjectEuler11to20:
@@ -41,7 +41,6 @@ class ProjectEuler11to20:
 		tm = [[row[j] for row in m] for j in range(0, 20)]  # transpose of m
 		rm = m[::-1]  # vertical reflection of m
 		
-		# todo get up and down diagonal rows
 		horizontal_prods = [self._max_adj_prod(a) for a in m]
 		vertical_prods = [self._max_adj_prod(a) for a in tm]
 		down_diag_prods = [
@@ -61,6 +60,8 @@ class ProjectEuler11to20:
 		return max(all_prods)
 		
 	def problem13(self) -> int:
+		# Work out the first ten digits of the sum of the following one-hundred
+		# 50-digit numbers below
 		nums_string = """37107287533902102798797998220837590246510135740250
 		46376937677490009712648124896970078050417018260538
 		74324986199524741059474233309513058123726617309629
@@ -175,6 +176,41 @@ class ProjectEuler11to20:
 		# sum_first_ten_digits has 12 digits, ignore last 2 digits after carry
 		return (sum_first_ten_digits + carry) // 100
 	
+	def _collatz_mem(self, ini: int, curr: int, cnt: int, mem: Dict[int, int]):
+		if curr == 1:
+			mem[ini] = cnt
+			return
+		
+		if curr in mem:
+			mem[ini] = mem[curr] + cnt
+			return
+		
+		if curr % 2 == 0:  # is even
+			return self._collatz_mem(ini, curr // 2, cnt + 1, mem)
+		return self._collatz_mem(ini, (3 * curr) + 1, cnt + 1, mem)
+	
+	def problem14(self) -> int:
+		"""
+		# The following iterative sequence is defined for the set of positive
+		# integers:
+		#     n -> n/2 if n is even
+		#     n -> 3n + 1 if n is odd
+		# Using the rule above and starting with 13, we generate the following
+		# sequence:
+		#     13 -> 40 -> 20 -> 10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1
+		# It can be seen that this sequence (starting at 13 and finishing at 1)
+		# contains 10 terms. Although it has not been proved yet (Collatz
+		# Problem), it is thought that all starting numbers finish at 1. Which
+		# starting number, under one million, produces the longest chain? NOTE:
+		# Once the chain starts the terms are allowed to go above one million.
+		"""
+		max_seq_mem = {}
+		for i in range(1, 1000001):
+			self._collatz_mem(i, i, 0, max_seq_mem)
+		
+		max_seq_len = max(max_seq_mem.values())
+		return [k for k, v in max_seq_mem.items() if v == max_seq_len][0]
+		
 
 if __name__ == "__main__":
 	euler = ProjectEuler11to20()
@@ -182,7 +218,7 @@ if __name__ == "__main__":
 	print(euler.problem11())  # solved
 	# print(euler.problem12())  # TODO unsolved
 	print(euler.problem13())  # solved
-	# print(euler.problem14())  # TODO unsolved
+	print(euler.problem14())  # solved
 	# print(euler.problem15())  # TODO unsolved
 	# print(euler.problem16())  # TODO unsolved
 	# print(euler.problem17())  # TODO unsolved

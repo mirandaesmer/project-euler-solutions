@@ -50,11 +50,20 @@ class ProjectEuler1to10:
                     max_palindrome = max(max_palindrome, i * j)
         return max_palindrome  # Could be made more efficient
     
+    def _is_20_div(self, num) -> int:
+        for i in range(19, 1, -1):
+            if num % i != 0:
+                return False
+        return True
+
     def problem5(self) -> int:
         # 2520 is the smallest number that can be divided by each of the numbers
         # from 1 to 10 without any remainder. What is the smallest positive
         # number that is evenly divisible (divisible with no remainder by all of
-        # the numbers from 1 to 20,
+        # the numbers from 1 to 20)
+        for candidate in range(20, 2000000000, 20):
+            if self._is_20_div(candidate):
+                return candidate
         return 0
         
     def problem6(self) -> int:
@@ -94,7 +103,7 @@ if __name__ == "__main__":
     print(euler.problem2())  # solved
     # print(euler.problem3())  # TODO unsolved
     print(euler.problem4())  # solved
-    # print(euler.problem5())  # TODO unsolved
+    print(euler.problem5())  # solved
     print(euler.problem6())  # solved
     # print(euler.problem7())  # TODO unsolved
     # print(euler.problem8())  # TODO unsolved
