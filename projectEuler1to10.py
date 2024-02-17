@@ -1,5 +1,5 @@
-from math import sqrt
-from typing import List
+from functools import reduce
+from typing import List, Dict, Tuple
 
 
 class ProjectEuler1to10:
@@ -80,6 +80,39 @@ class ProjectEuler1to10:
         squares_sum = sum(list(range(1, 101))) ** 2
         return squares_sum - sum_squares
 
+    def problem8(self) -> int:
+        # The four adjacent digits in the 1000-digit number below that have the
+        # greatest product are 9 * 9 * 8 * 9 = 5832. <p>Find the thirteen
+        # adjacent digits in the 1000-digit number that have the greatest
+        # product. What is the value of this product?
+        num_string = """
+        73167176531330624919225119674426574742355349194934969835203127745063262
+        39578318016984801869478851843858615607891129494954595017379583319528532
+        08805511125406987471585238630507156932909632952274430435576689664895044
+        52445231617318564030987111217223831136222989342338030813533627661428280
+        64444866452387493035890729629049156044077239071381051585930796086670172
+        42712188399879790879227492190169972088809377665727333001053367881220235
+        42180975125454059475224352584907711670556013604839586446706324415722155
+        39753697817977846174064955149290862569321978468622482839722413756570560
+        57490261407972968652414535100474821663704844031998900088952434506585412
+        27588666881164271714799244429282308634656748139191231628245861786645835
+        91245665294765456828489128831426076900422421902267105562632111110937054
+        42175069416589604080719840385096245544436298123098787992724428490918884
+        58015616609791913387549920052406368991256071760605886116467109405077541
+        00225698315520005593572972571636269561882670428252483600823257530420752
+        963450"""
+        
+        for d in ['\n', '\t', ' ', '',]:
+            num_string = num_string.replace(d, '')
+        
+        _max = 0
+        for i in range(0, 1000 - 13):
+            slice = [int(i) for i in num_string[i:i + 13]]
+            if all(slice):  # contains no 0s
+                product = reduce(lambda x, y: x * y, slice)
+                _max = max(_max, product)
+        return _max
+    
     def problem9(self) -> int:
         # A Pythagorean triplet is a set of three natural numbers
         #     a < b < c for which a^2 + b^2 = c^2
@@ -106,6 +139,6 @@ if __name__ == "__main__":
     print(euler.problem5())  # solved
     print(euler.problem6())  # solved
     # print(euler.problem7())  # TODO unsolved
-    # print(euler.problem8())  # TODO unsolved
+    print(euler.problem8())  # solved
     print(euler.problem9())  # solved
     # print(euler.problem10())  # TODO unsolved
