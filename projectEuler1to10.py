@@ -124,7 +124,7 @@ class ProjectEuler1to10:
         for a in range(1, 250):
             for b in range(a + 1, ((1000 - a) // 2) + a):  # limit search space
                 c = 1000 - a - b
-                if c != a and c != b and ( (a ** 2) + (b ** 2) == c ** 2 ):
+                if c != a and c != b and ((a ** 2) + (b ** 2) == c ** 2):
                     return a * b * c
         return 0
 
