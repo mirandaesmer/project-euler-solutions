@@ -1,5 +1,7 @@
 from functools import reduce
-from typing import List, Dict, Tuple
+from math import sqrt
+from typing import List
+from eulerPrimes import gen_primes
 
 
 class ProjectEuler1to10:
@@ -28,9 +30,16 @@ class ProjectEuler1to10:
         mem = [1,2] + ([0] * 100)
         return self._problem2(2, 2, mem)
     
-    def problem3(self) -> int:
+    def problem3(self) -> float:
         # The prime factors of 13195 are 5, 7, 13 and 29
         # What is the largest prime factor of the number 600851475143?
+        number = 600851475143
+        limit = int(sqrt(number))
+        primes_upto = gen_primes(limit)
+        
+        for prime in primes_upto[::-1]:
+            if 600851475143 % prime == 0:
+                return prime
         return 0
     
     def _is_palindrome_fast(self, num: int) -> bool:
@@ -132,13 +141,13 @@ class ProjectEuler1to10:
 if __name__ == "__main__":
     euler = ProjectEuler1to10()
     
-    print(euler.problem1())  # solved
-    print(euler.problem2())  # solved
-    # print(euler.problem3())  # TODO unsolved
-    print(euler.problem4())  # solved
-    print(euler.problem5())  # solved
-    print(euler.problem6())  # solved
-    # print(euler.problem7())  # TODO unsolved
-    print(euler.problem8())  # solved
-    print(euler.problem9())  # solved
-    # print(euler.problem10())  # TODO unsolved
+    # print(euler.problem1())  # solved
+    # print(euler.problem2())  # solved
+    # print(euler.problem3())  # solved
+    # print(euler.problem4())  # solved
+    # print(euler.problem5())  # solved
+    # print(euler.problem6())  # solved
+    # # print(euler.problem7())  # TODO unsolved
+    # print(euler.problem8())  # solved
+    # print(euler.problem9())  # solved
+    # # print(euler.problem10())  # TODO unsolved
