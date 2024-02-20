@@ -1,4 +1,5 @@
 from functools import reduce
+from math import comb
 from typing import List, Dict
 
 from eulerPrimes import get_divisor_count
@@ -237,6 +238,16 @@ class ProjectEuler11to20:
 		max_seq_len = max(max_seq_mem.values())
 		return [k for k, v in max_seq_mem.items() if v == max_seq_len][0]
 		
+	def problem15(self) -> int:
+		# Starting in the top left corner of a 2 x 2 grid, and only being able
+		# to move to the right and down, there are exactly 6 routes to the
+		# bottom right corner. How many such routes are there through a 20 x 20
+		# grid?
+		
+		# n x n grid paths is equal to the binomial coefficient of (nx2, n)
+		n = 20
+		return comb(n * 2, n)
+
 
 if __name__ == "__main__":
 	euler = ProjectEuler11to20()
@@ -245,7 +256,7 @@ if __name__ == "__main__":
 	# print(euler.problem12())  # solved
 	# print(euler.problem13())  # solved
 	# print(euler.problem14())  # solved
-	# print(euler.problem15())  # TODO unsolved
+	# print(euler.problem15())  # solved
 	# print(euler.problem16())  # TODO unsolved
 	# print(euler.problem17())  # TODO unsolved
 	# print(euler.problem18())  # TODO unsolved
