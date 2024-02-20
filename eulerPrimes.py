@@ -19,6 +19,18 @@ def gen_primes(upto) -> List[int]:
 			primes.append(i)
 	return primes
 
+def gen_ith_prime(i):
+	primes = [2, 3, 5, 7]
+	curr = 4
+	num = 11
+	
+	while curr < i:
+		if is_prime(num, primes):
+			primes.append(num)
+			curr += 1
+		num += 1
+	return primes[-1]
+
 
 # Helper functions for prime related problems
 if __name__ == "__main__":

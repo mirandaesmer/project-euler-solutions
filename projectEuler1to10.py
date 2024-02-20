@@ -1,7 +1,7 @@
 from functools import reduce
 from math import sqrt
 from typing import List
-from eulerPrimes import gen_primes
+from eulerPrimes import gen_primes, gen_ith_prime
 
 
 class ProjectEuler1to10:
@@ -89,6 +89,11 @@ class ProjectEuler1to10:
         squares_sum = sum(list(range(1, 101))) ** 2
         return squares_sum - sum_squares
 
+    def problem7(self) -> int:
+        # By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we
+        # can see that the 6th prime is 13. What is the 10001st prime number?
+        return gen_ith_prime(10001)
+
     def problem8(self) -> int:
         # The four adjacent digits in the 1000-digit number below that have the
         # greatest product are 9 * 9 * 8 * 9 = 5832. <p>Find the thirteen
@@ -137,6 +142,11 @@ class ProjectEuler1to10:
                     return a * b * c
         return 0
 
+    def problem10(self) -> int:
+        # The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17
+        # Find the sum of all the primes below two million.
+        return sum(gen_primes(2000000))
+
 
 if __name__ == "__main__":
     euler = ProjectEuler1to10()
@@ -147,7 +157,7 @@ if __name__ == "__main__":
     # print(euler.problem4())  # solved
     # print(euler.problem5())  # solved
     # print(euler.problem6())  # solved
-    # # print(euler.problem7())  # TODO unsolved
+    # print(euler.problem7())  # solved
     # print(euler.problem8())  # solved
     # print(euler.problem9())  # solved
-    # # print(euler.problem10())  # TODO unsolved
+    # print(euler.problem10())  # solved
