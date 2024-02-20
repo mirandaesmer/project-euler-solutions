@@ -5,6 +5,50 @@ from eulerPrimes import is_prime
 
 
 class ProjectEuler31to40:
+	def _cancel_digits(self, numerator: int, denominator: int) -> float:
+		num_str = str(numerator)
+		den_str = str(denominator)
+		
+		if num_str[0] == den_str[0]:
+			return int(num_str[1]) / int(den_str[1])
+		if num_str[0] == den_str[1]:
+			return int(num_str[1]) / int(den_str[0])
+		
+		if num_str[1] == den_str[0]:
+			return int(num_str[0]) / int(den_str[1])
+		if num_str[1] == den_str[1]:
+			return int(num_str[0]) / int(den_str[0])
+		return -1.0
+
+	def problem33(self) -> float:
+		# The fraction 49/98 is a curious fraction, as an inexperienced
+		# mathematician in attempting to simplify it may incorrectly believe
+		# that 49/98 = 4/8, which is correct, is obtained by cancelling the 9s.
+		# We shall consider fractions like, 30/50 = 3/5, to be trivial examples
+		# There are exactly four non-trivial examples of this type of fraction,
+		# less than one in value, and containing two digits in the numerator
+		# and denominator. If the product of these four fractions is given in
+		# its lowest common terms, find the value of the denominator.
+		nums = [i for i in range(12, 100) if i % 10 != 0]
+		denoms = [i for i in range(12, 100) if i % 10 != 0]
+		nums_len = len(nums)
+		
+		result_nums = 1
+		result_dens = 1
+		for i in range(0, nums_len):
+			for j in range(0, nums_len):
+				if i == j or nums[i] > denoms[j]:
+					continue
+				norm_frac = nums[i] / denoms[j]
+				canc_frac = self._cancel_digits(nums[i], denoms[j])
+				
+				if norm_frac == canc_frac:
+					result_nums *= nums[i]
+					result_dens *= denoms[j]
+		
+		# Answer is reciprocal of this
+		return result_nums / result_dens
+	
 	def _get_all_digit_rotations(self, num: int) -> Set[int]:
 		digits = len(str(num))
 		if digits == 1:
@@ -92,6 +136,7 @@ class ProjectEuler31to40:
 if __name__ == "__main__":
 	euler = ProjectEuler31to40()
 	
+	# print(euler.problem33())  # solved
 	# print(euler.problem35())  # solved
 	# print(euler.problem36())  # solved
 	# print(euler.problem39())  # solved
