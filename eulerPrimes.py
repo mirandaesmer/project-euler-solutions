@@ -34,7 +34,7 @@ def gen_ith_prime(i: int) -> int:
 	return primes[-1]
 
 
-def get_divisor_count(n) -> int:
+def get_divisor_count(n: int) -> int:
 	if n == 1:
 		return 1
 	
@@ -48,6 +48,16 @@ def get_divisor_count(n) -> int:
 		if n % i == 0:
 			divs += 2
 	return divs
+
+
+def get_proper_divisors(n: int):
+	root = sqrt(n)
+	divisors = {1}
+	for i in range(2, ceil(root)):
+		if n % i == 0:
+			divisors.add(i)
+			divisors.add(int(n / i))
+	return divisors
 
 
 # NOTE: Helper functions for prime related problems
