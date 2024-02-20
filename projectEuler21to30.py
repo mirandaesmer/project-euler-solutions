@@ -38,9 +38,25 @@ class ProjectEuler21to30:
 				solutions.add(a ** b)
 		return len(solutions)
 
+	def problem30(self) -> int:
+		# Surprisingly there are only three numbers that can be written as the
+		# sum of fourth powers of their digits:
+		#     1634, 8208, 9474
+		# The sum of these numbers is
+		#     1634 + 8208 + 9474 = 19316
+		# Find the sum of all the numbers that can be written as the sum of
+		# fifth powers of their digits.
+		_sum = 0
+		for i in range(2, 1000000):
+			if i == sum([int(ch) ** 5 for ch in str(i)]):
+				_sum += i
+		return _sum
+
 
 if __name__ == "__main__":
 	euler = ProjectEuler21to30()
 	
 	# print(euler.problem21())  # solved
 	# print(euler.problem29())  # solved
+	# print(euler.problem30())  # solved
+
