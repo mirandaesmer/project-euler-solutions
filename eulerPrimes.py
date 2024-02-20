@@ -1,3 +1,4 @@
+from math import ceil, sqrt
 from typing import List
 
 
@@ -19,6 +20,7 @@ def gen_primes(upto) -> List[int]:
 			primes.append(i)
 	return primes
 
+
 def gen_ith_prime(i):
 	primes = [2, 3, 5, 7]
 	curr = 4
@@ -32,7 +34,22 @@ def gen_ith_prime(i):
 	return primes[-1]
 
 
-# Helper functions for prime related problems
+def get_divisor_count(n) -> int:
+	if n == 1:
+		return 1
+	
+	root = sqrt(n)
+	divs = 2  # 1 and itself
+	
+	if root - int(root) == 0.0:  # perfect squares
+		divs += 1
+	
+	for i in range(2, ceil(root)):
+		if n % i == 0:
+			divs += 2
+	return divs
+
+
+# NOTE: Helper functions for prime related problems
 if __name__ == "__main__":
-	# print(gen_primes(50))  # DEBUG
 	pass
