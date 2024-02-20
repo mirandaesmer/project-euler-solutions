@@ -2,7 +2,7 @@ from math import ceil, sqrt
 from typing import List
 
 
-def is_prime(n, prev_primes) -> bool:
+def is_prime(n: int, prev_primes: List[int]) -> bool:
 	if n % 10 not in [1, 3, 7, 9]:
 		return False
 	
@@ -12,16 +12,16 @@ def is_prime(n, prev_primes) -> bool:
 	return True
 
 
-def gen_primes(upto) -> List[int]:
+def gen_primes(limit: int) -> List[int]:
 	primes = [2, 3, 5, 7]
 
-	for i in range(11, upto + 1):
+	for i in range(11, limit + 1):
 		if is_prime(i, primes):
 			primes.append(i)
 	return primes
 
 
-def gen_ith_prime(i):
+def gen_ith_prime(i: int) -> int:
 	primes = [2, 3, 5, 7]
 	curr = 4
 	num = 11

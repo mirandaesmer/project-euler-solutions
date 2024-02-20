@@ -30,7 +30,7 @@ class ProjectEuler1to10:
         mem = [1,2] + ([0] * 100)
         return self._problem2(2, 2, mem)
     
-    def problem3(self) -> float:
+    def problem3(self) -> int:
         # The prime factors of 13195 are 5, 7, 13 and 29
         # What is the largest prime factor of the number 600851475143?
         number = 600851475143
@@ -59,7 +59,7 @@ class ProjectEuler1to10:
                     max_palindrome = max(max_palindrome, i * j)
         return max_palindrome  # Could be made more efficient
     
-    def _is_20_div(self, num) -> int:
+    def _is_20_div(self, num: int) -> int:
         for i in range(19, 1, -1):
             if num % i != 0:
                 return False

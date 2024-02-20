@@ -5,7 +5,7 @@ from eulerPrimes import is_prime
 
 
 class ProjectEuler31to40:
-	def _get_all_digit_rotations(self, num) -> Set[int]:
+	def _get_all_digit_rotations(self, num: int) -> Set[int]:
 		digits = len(str(num))
 		if digits == 1:
 			return {num}
