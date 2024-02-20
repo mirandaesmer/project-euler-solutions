@@ -1,7 +1,48 @@
 from functools import reduce
+from typing import Set
+
+from eulerPrimes import is_prime
 
 
 class ProjectEuler31to40:
+	def _get_all_digit_rotations(self, num) -> Set[int]:
+		digits = len(str(num))
+		if digits == 1:
+			return {num}
+		
+		concat_nums = str(num) + str(num)
+		return {int(concat_nums[0 + i: digits+i]) for i in range(1, digits)}
+		
+	def problem35(self) -> int:
+		# The number, 197, is called a circular prime because all rotations of
+		# the digits: 197, 971, and 719, are themselves prime. There are
+		# thirteen such primes below 100:
+		#     2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, and 97.
+		# How many circular primes are there below one million?
+		all_primes = [2, 3, 5, 7]
+		cir_candidates = [2, 3, 5, 7]
+		limit = 1000000
+		
+		for i in range(11, limit + 1):
+			if is_prime(i, all_primes):
+				all_primes.append(i)
+			
+				# rotated primes do not contain 0, 2, 4, 5, 6, 8 at all
+				s = str(i)
+				if s.count('0') or s.count('2') or s.count('4') or s.count('5') or s.count('6') or s.count('8'):
+					continue
+				else:
+					cir_candidates.append(i)
+				
+		rotations_map = {p: self._get_all_digit_rotations(p) for p in cir_candidates}
+		sol_count = 0
+		
+		for k, rotations in rotations_map.items():
+			prime_rots = [r in all_primes for r in rotations]
+			if all(prime_rots):
+				sol_count += 1
+		return sol_count
+	
 	def problem36(self) -> int:
 		# The decimal number, 585 = 1001001001 (binary), is palindromic in both
 		# bases. Find the sum of all numbers, less than one million, which are
@@ -46,11 +87,12 @@ class ProjectEuler31to40:
 		full_str = ''.join([str(i) for i in range(0, 1000000)])
 		digits = [int(full_str[10 ** i]) for i in range(0, 7)]
 		return reduce(lambda x, y: x * y, digits)
-		
+
 
 if __name__ == "__main__":
 	euler = ProjectEuler31to40()
 	
-	print(euler.problem36())  # solved
-	print(euler.problem39())  # solved
-	print(euler.problem40())  # solved
+	# print(euler.problem35())  # solved
+	# print(euler.problem36())  # solved
+	# print(euler.problem39())  # solved
+	# print(euler.problem40())  # solved
