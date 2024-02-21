@@ -1,3 +1,5 @@
+from string import ascii_uppercase
+
 from eulerPrimes import get_proper_divisors
 
 
@@ -22,6 +24,21 @@ class ProjectEuler21to30:
 				amicable_nums.add(a)
 				amicable_nums.add(b)
 		return sum(amicable_nums)
+	
+	def _name_score(self, name: str, charset: str, pos: int) -> int:
+		sum = 0
+		for ch in name:
+			sum += charset.index(ch)
+		return (pos + 1) * sum  # 1-indexed
+	
+	def problem22(self) -> int:
+		with open("data/problem22.txt") as file_data:
+			data = file_data.read().replace('"', '')
+		
+		name_list = sorted(data.split(","))
+		upr = '0' + ascii_uppercase
+		scores = [self._name_score(n, upr, i) for i, n in enumerate(name_list)]
+		return sum(scores)
 	
 	def problem29(self) -> int:
 		# Consider all integer combinations of a^b for 2<=a<=5 and 2<=b<=5,
@@ -56,6 +73,7 @@ class ProjectEuler21to30:
 if __name__ == "__main__":
 	euler = ProjectEuler21to30()
 	
+	# print(euler.problem22())  # solved
 	# print(euler.problem21())  # solved
 	# print(euler.problem29())  # solved
 	# print(euler.problem30())  # solved
