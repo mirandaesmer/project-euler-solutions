@@ -12,7 +12,7 @@ def is_prime(n: int, prev_primes: List[int]) -> bool:
 	return True
 
 
-def gen_primes(limit: int) -> List[int]:
+def get_primes_up_to(limit: int) -> List[int]:
 	primes = [2, 3, 5, 7]
 
 	for i in range(11, limit + 1):
@@ -21,7 +21,7 @@ def gen_primes(limit: int) -> List[int]:
 	return primes
 
 
-def gen_ith_prime(i: int) -> int:
+def get_ith_prime(i: int) -> int:
 	primes = [2, 3, 5, 7]
 	curr = 4
 	num = 11

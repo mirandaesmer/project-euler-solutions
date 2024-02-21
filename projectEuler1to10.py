@@ -1,7 +1,7 @@
 from functools import reduce
 from math import sqrt
 from typing import List
-from eulerPrimes import gen_primes, gen_ith_prime
+from eulerPrimes import get_primes_up_to, get_ith_prime
 
 
 class ProjectEuler1to10:
@@ -35,7 +35,7 @@ class ProjectEuler1to10:
         # What is the largest prime factor of the number 600851475143?
         number = 600851475143
         limit = int(sqrt(number))
-        primes_upto = gen_primes(limit)
+        primes_upto = get_primes_up_to(limit)
         
         for prime in primes_upto[::-1]:
             if 600851475143 % prime == 0:
@@ -92,7 +92,7 @@ class ProjectEuler1to10:
     def problem7(self) -> int:
         # By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we
         # can see that the 6th prime is 13. What is the 10001st prime number?
-        return gen_ith_prime(10001)
+        return get_ith_prime(10001)
 
     def problem8(self) -> int:
         # The four adjacent digits in the 1000-digit number below that have the
@@ -145,7 +145,7 @@ class ProjectEuler1to10:
     def problem10(self) -> int:
         # The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17
         # Find the sum of all the primes below two million.
-        return sum(gen_primes(2000000))
+        return sum(get_primes_up_to(2000000))
 
 
 if __name__ == "__main__":

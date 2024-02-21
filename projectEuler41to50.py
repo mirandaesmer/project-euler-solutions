@@ -2,7 +2,7 @@ from string import ascii_uppercase
 from itertools import permutations
 from typing import List
 
-from eulerPrimes import gen_primes
+from eulerPrimes import get_primes_up_to
 
 
 class ProjectEuler41to50:
@@ -38,7 +38,7 @@ class ProjectEuler41to50:
 		# there is one other 4-digit increasing sequence. What 12-digit number
 		# do you form by concatenating the three terms in this sequence?
 		result = []
-		four_dig_primes = [i for i in gen_primes(10000) if i > 1000]
+		four_dig_primes = [i for i in get_primes_up_to(10000) if i > 1000]
 		
 		for prime in four_dig_primes:
 			pr_chars = [ch for ch in str(prime)]
