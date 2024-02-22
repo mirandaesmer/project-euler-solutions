@@ -203,7 +203,13 @@ class ProjectEuler11to20:
 		# sum_first_ten_digits has 12 digits, ignore last 2 digits after carry
 		return (sum_first_ten_digits + carry) // 100
 	
-	def _collatz_mem(self, ini: int, curr: int, cnt: int, mem: Dict[int, int]):
+	def _collatz_mem(
+			self,
+			ini: int,
+			curr: int,
+			cnt: int,
+			mem: Dict[int, int]
+	) -> None:
 		if curr == 1:
 			mem[ini] = cnt
 			return
@@ -217,7 +223,6 @@ class ProjectEuler11to20:
 		return self._collatz_mem(ini, (3 * curr) + 1, cnt + 1, mem)
 	
 	def problem14(self) -> int:
-		"""
 		# The following iterative sequence is defined for the set of positive
 		# integers:
 		#     n -> n/2 if n is even
@@ -230,7 +235,6 @@ class ProjectEuler11to20:
 		# Problem), it is thought that all starting numbers finish at 1. Which
 		# starting number, under one million, produces the longest chain? NOTE:
 		# Once the chain starts the terms are allowed to go above one million.
-		"""
 		max_seq_mem = {}
 		for i in range(1, 1000001):
 			self._collatz_mem(i, i, 0, max_seq_mem)

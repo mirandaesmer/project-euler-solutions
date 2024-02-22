@@ -32,6 +32,16 @@ class ProjectEuler21to30:
 		return (pos + 1) * sum  # 1-indexed
 	
 	def problem22(self) -> int:
+		# Using problem22.txt, a 46K text file containing over five-thousand
+		# first names, begin by sorting it into alphabetical order. Then
+		# working out the alphabetical value for each name, multiply this value
+		# by its alphabetical position in the list to obtain a name score.
+		# For example, when the list is sorted into alphabetical order, COLIN,
+		# which is worth
+		#     3 + 15 + 12 + 9 + 14 = 53
+		# is the 938th name in the list. So, COLIN would obtain a score of
+		#     938 x 53 = 49714
+		# What is the total of all the name scores in the file?
 		with open("data/problem22.txt") as file_data:
 			data = file_data.read().replace('"', '')
 		
@@ -75,6 +85,11 @@ if __name__ == "__main__":
 	
 	# print(euler.problem22())  # solved
 	# print(euler.problem21())  # solved
+	# print(euler.problem23())  # TODO unsolved
+	# print(euler.problem24())  # TODO unsolved
+	# print(euler.problem25())  # TODO unsolved
+	# print(euler.problem26())  # TODO unsolved
+	# print(euler.problem27())  # TODO unsolved
+	# print(euler.problem28())  # TODO unsolved
 	# print(euler.problem29())  # solved
 	# print(euler.problem30())  # solved
-

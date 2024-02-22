@@ -136,8 +136,13 @@ class ProjectEuler31to40:
 if __name__ == "__main__":
 	euler = ProjectEuler31to40()
 	
+	# print(euler.problem31())  # TODO unsolved
+	# print(euler.problem32())  # TODO unsolved
 	# print(euler.problem33())  # solved
+	# print(euler.problem34())  # TODO unsolved
 	# print(euler.problem35())  # solved
 	# print(euler.problem36())  # solved
+	# print(euler.problem37())  # TODO unsolved
+	# print(euler.problem38())  # TODO unsolved
 	# print(euler.problem39())  # solved
 	# print(euler.problem40())  # solved

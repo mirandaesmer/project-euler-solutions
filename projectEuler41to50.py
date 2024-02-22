@@ -6,9 +6,18 @@ from eulerPrimes import get_primes_up_to
 
 
 class ProjectEuler41to50:
-	
 	def problem42(self) -> int:
-		# TODO add description
+		# The nth term of the sequence of triangle numbers is given by,
+		#     t_n = \frac12n(n+1)
+		# so the first ten triangle numbers are:
+		#     1, 3, 6, 10, 15, 21, 28, 36, 45, 55...
+		# By converting each letter in a word to a number corresponding to its
+		# alphabetical position and adding these values we form a word value.
+		# For example, the word value for SKY is
+		#     19 + 11 + 25 = 55 = t_{10}.
+		# If the word value is a triangle number then we shall call the word a
+		# triangle word. Using problem42.txt, a 16K text file containing nearly
+		# two-thousand common English words, how many are triangle words?
 		with open("data/problem42.txt") as file_data:
 			data = file_data.read().replace('"', '')
 			word_list = data.split(",")
@@ -61,5 +70,13 @@ class ProjectEuler41to50:
 if __name__ == "__main__":
 	euler = ProjectEuler41to50()
 	
+	# print(euler.problem41())  # TODO unsolved
 	# print(euler.problem42())  # solved
+	# print(euler.problem43())  # TODO unsolved
+	# print(euler.problem44())  # TODO unsolved
+	# print(euler.problem45())  # TODO unsolved
+	# print(euler.problem46())  # TODO unsolved
+	# print(euler.problem47())  # TODO unsolved
+	# print(euler.problem48())  # TODO unsolved
 	# print(euler.problem49())  # solved
+	# print(euler.problem50())  # TODO unsolved

@@ -1,5 +1,5 @@
 from math import ceil, sqrt
-from typing import List
+from typing import List, Set
 
 
 def is_prime(n: int, prev_primes: List[int]) -> bool:
@@ -50,7 +50,7 @@ def get_divisor_count(n: int) -> int:
 	return divs
 
 
-def get_proper_divisors(n: int):
+def get_proper_divisors(n: int) -> Set[int]:
 	root = sqrt(n)
 	divisors = {1}
 	for i in range(2, ceil(root)):
