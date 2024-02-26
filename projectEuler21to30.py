@@ -49,6 +49,24 @@ class ProjectEuler21to30:
 		upr = '0' + ascii_uppercase
 		scores = [self._name_score(n, upr, i) for i, n in enumerate(name_list)]
 		return sum(scores)
+
+	def problem25(self) -> int:
+		# The Fibonacci sequence is defined by the recurrence relation:
+		#     F(n) = F(n - 1) + F(n - 2), where F(1) = 1 and F(2) = 1
+		# The 12th term, F(12), is the first term to contain three digits. What
+		# is the index of the first term in the Fibonacci sequence to contain
+		# 1000 digits?
+		mem = [0] * 5050
+		mem[0] = 1
+		mem[1] = 1
+		
+		for idx in range(2, 5000):
+			term = mem[idx - 1] + mem[idx - 2]
+			mem[idx] = term
+			
+			if idx > 4500 and len(str(term)) >= 1000:
+				return idx + 1  # mem is 0-indexed
+		return 0
 	
 	def problem29(self) -> int:
 		# Consider all integer combinations of a^b for 2<=a<=5 and 2<=b<=5,
@@ -87,7 +105,7 @@ if __name__ == "__main__":
 	# print(euler.problem21())  # solved
 	# print(euler.problem23())  # TODO unsolved
 	# print(euler.problem24())  # TODO unsolved
-	# print(euler.problem25())  # TODO unsolved
+	print(euler.problem25())  # solved
 	# print(euler.problem26())  # TODO unsolved
 	# print(euler.problem27())  # TODO unsolved
 	# print(euler.problem28())  # TODO unsolved
