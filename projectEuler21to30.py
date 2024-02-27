@@ -1,3 +1,4 @@
+from itertools import permutations
 from string import ascii_uppercase
 
 from eulerPrimes import get_proper_divisors
@@ -49,6 +50,18 @@ class ProjectEuler21to30:
 		upr = '0' + ascii_uppercase
 		scores = [self._name_score(n, upr, i) for i, n in enumerate(name_list)]
 		return sum(scores)
+	
+	def problem24(self) -> int:
+		# A permutation is an ordered arrangement of objects. For example, 3124
+		# is one possible permutation of the digits 1, 2, 3 and 4. If all of
+		# the permutations are listed numerically or alphabetically, we call it
+		# lexicographic order. The lexicographic permutations of 0, 1 and 2 are:
+		#     012   021   102   120   201   210
+		# What is the millionth lexicographic permutation of the digits:
+		#     0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
+		ordered_perms = sorted(permutations(range(0, 10)))
+		millionth_perm = ''.join([str(d) for d in ordered_perms[999999]])
+		return int(millionth_perm)
 
 	def problem25(self) -> int:
 		# The Fibonacci sequence is defined by the recurrence relation:
@@ -127,7 +140,7 @@ if __name__ == "__main__":
 	# print(euler.problem22())  # solved
 	# print(euler.problem21())  # solved
 	# print(euler.problem23())  # TODO unsolved
-	# print(euler.problem24())  # TODO unsolved
+	# print(euler.problem24())  # solved
 	# print(euler.problem25())  # solved
 	# print(euler.problem26())  # TODO unsolved
 	# print(euler.problem27())  # TODO unsolved
